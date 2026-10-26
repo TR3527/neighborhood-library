@@ -67,7 +67,13 @@ public class Main {
         books[19] = book19;
 
 
+    for (int i = 0; i < books.length; i++){
 
+        if(books[i].isCheckedOut() == false ){
+            System.out.println(books[i].toString() + " is available!");
+        }
+
+    }
 
 
     }
