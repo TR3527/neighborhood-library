@@ -71,6 +71,10 @@ public class Main {
 
         Boolean continueRunning = true;
 
+//CTRL + SPACE
+
+
+        //CRL + SPACE
 
         while(continueRunning == true){
 
@@ -85,6 +89,7 @@ public class Main {
             int userSelection = read.nextInt();
 
 
+            //OPTION 1
             if (userSelection == 1){
 
                 for (int i = 0; i < books.length; i++){
@@ -98,8 +103,6 @@ public class Main {
                         System.out.println("Title: " + books[i].getTitle());
 
                     } // closes !books[i]
-
-
 
                 }//closes for loop
 
@@ -126,14 +129,16 @@ public class Main {
 //                    System.out.println("ID input invalid!");
 //                }//closes id insert
 
+                    //What if a number not on ID list is inputted?
+
 
                 }
 
             }
 
-
-
+            //OPTION 2
             if (userSelection == 2){
+
 
                 for(int i = 0; i < books.length; i++){
 
@@ -146,49 +151,45 @@ public class Main {
 
                     }//books[i] if
 
-                    System.out.println("Enter C to check in book, if you would like to \n" +
-                            "return to the home screen, press X: ");
-                    char choice = read.next().charAt(0);
 
-                    if(choice == 'C' || choice == 'c'){
+                }//main for loop end(user==2)
+                System.out.print("Enter C to check in book, if you would like to \n" +
+                        "return to the home screen, press X: ");
+                char choice = read.next().charAt(0);
 
-                        System.out.println("What is the book ID: ");
-                        int returnID = read.nextInt();
+                if(choice == 'C' || choice == 'c'){
 
-                        for(int i = 0; i < books.length; i++){
+                    System.out.print("What is the book ID: ");
+                    int returnID = read.nextInt();
 
-                            if(returnID == books[i].getId()){
-                                books[i].checkIn();
-                            }
+                    //it is in the for loop below
+                    for(int i = 0; i < books.length; i++){
+
+                        if(returnID == books[i].getId()){
+                            books[i].checkIn();
+                            System.out.println("Check-In Successful!");
                         }
-
-                    }else if(choice == 'X' || choice == 'x'){
-                        continueRunning = false;
-
                     }
+
+                }else if(choice == 'X' || choice == 'x'){
+
                 }
 
                     }
 
 
-
+            //OPTION 3
             if ( userSelection == 3){
                 continueRunning = false;
+                System.out.println("Thank You For Visiting!");
             }
-
-
-
 
 
         }
 
-
-
-
-
-
-
+        read.close();
 
 
     }
+
 }
