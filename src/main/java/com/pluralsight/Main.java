@@ -69,51 +69,120 @@ public class Main {
         Book book19 = new Book(19,"10564432","The Shining") ;
         books[19] = book19;
 
-
-        System.out.println("Welcome to the neighborhood library!");
-        System.out.println(" ");
-        System.out.println("Pick one of the following options:");
-        System.out.println("1 - Show Available Books");
-        System.out.println("2 - Show Checked Out Books");
-        System.out.println("3 - Exit");
-
-        System.out.print("Enter your choice: ");
-        int userSelection = read.nextInt();
-
         Boolean continueRunning = true;
 
-        if (userSelection == 1){
 
-            for (int i = 0; i < books.length; i++){
+        while(continueRunning == true){
+
+            System.out.println("Welcome to the neighborhood library!");
+            System.out.println(" ");
+            System.out.println("Pick one of the following options:");
+            System.out.println("1 - Show Available Books");
+            System.out.println("2 - Show Checked Out Books");
+            System.out.println("3 - Exit");
+
+            System.out.print("Enter your choice: ");
+            int userSelection = read.nextInt();
 
 
-                //or books[i].isCheckedOut() == false
-                if(!books[i].isCheckedOut()){
+            if (userSelection == 1){
 
-                    //display all info
-                    //System.out.println(books[i].toString());
-                   //setters not needed bc 20 books established in array
+                for (int i = 0; i < books.length; i++){
 
 
-                    System.out.println("ID: " + books[i].getId());
-                    System.out.println("ISBN: " + books[i].getIsbn());
-                    System.out.println("Title: " + books[i].getTitle());
+                    //or books[i].isCheckedOut() == false
+                    if(!books[i].isCheckedOut()){
 
-                }
+                        System.out.println("ID: " + books[i].getId());
+                        System.out.println("ISBN: " + books[i].getIsbn());
+                        System.out.println("Title: " + books[i].getTitle());
+
+                    } // closes !books[i]
+
+
+
+                }//closes for loop
+
                 System.out.print("Enter ID of book you are interested in: ");
                 int idInsert = read.nextInt();
 
-                if(idInsert == books[i].getId()){
+                read.nextLine();
 
-                    System.out.println("The chosen title is available!" +
-                            " Enter your name to proceed with checkout: ");
-                    String userName = read.nextLine();
+                for(int i = 0; i < books.length; i++){
+
+                    if(idInsert == books[i].getId()){
+
+                        System.out.print("Book located! \n" +
+                                " Enter your name to proceed with checkout: ");
+                        String userName = read.nextLine();
+
+                        books[i].checkOut(userName);
+
+                        System.out.println("Checkout complete!");
+
+
+                    }
+//                else{
+//                    System.out.println("ID input invalid!");
+//                }//closes id insert
+
 
                 }
 
             }
 
+
+
+            if (userSelection == 2){
+
+                for(int i = 0; i < books.length; i++){
+
+                    if(books[i].isCheckedOut()){
+
+                        System.out.println("ID: " + books[i].getId());
+                        System.out.println("ISBN: " + books[i].getIsbn());
+                        System.out.println("Title: " + books[i].getTitle());
+                        System.out.println("Checked out to: " + books[i].getCheckedOutTo());
+
+                    }//books[i] if
+
+                    System.out.println("Enter C to check in book, if you would like to \n" +
+                            "return to the home screen, press X: ");
+                    char choice = read.next().charAt(0);
+
+                    if(choice == 'C' || choice == 'c'){
+
+                        System.out.println("What is the book ID: ");
+                        int returnID = read.nextInt();
+
+                        for(int i = 0; i < books.length; i++){
+
+                            if(returnID == books[i].getId()){
+                                books[i].checkIn();
+                            }
+                        }
+
+                    }else if(choice == 'X' || choice == 'x'){
+                        continueRunning = false;
+
+                    }
+                }
+
+                    }
+
+
+
+            if ( userSelection == 3){
+                continueRunning = false;
+            }
+
+
+
+
+
         }
+
+
 
 
 
