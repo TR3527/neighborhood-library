@@ -1,7 +1,10 @@
 package com.pluralsight;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+        Scanner read = new Scanner(System.in);
 
         Book[] books = new Book[20];
 
@@ -57,7 +60,7 @@ public class Main {
         Book book16 = new Book(16,"15879655","The Great Gatsby") ;
         books[16] = book16;
 
-        Book book17 = new Book(18,"10566775","Treasure Island") ;
+        Book book17 = new Book(17,"10566775","Treasure Island") ;
         books[17] = book17;
 
         Book book18 = new Book(18,"10565467","War and Peace") ;
@@ -67,13 +70,55 @@ public class Main {
         books[19] = book19;
 
 
-    for (int i = 0; i < books.length; i++){
+        System.out.println("Welcome to the neighborhood library!");
+        System.out.println(" ");
+        System.out.println("Pick one of the following options:");
+        System.out.println("1 - Show Available Books");
+        System.out.println("2 - Show Checked Out Books");
+        System.out.println("3 - Exit");
 
-        if(books[i].isCheckedOut() == false ){
-            System.out.println(books[i].toString() + " is available!");
+        System.out.print("Enter your choice: ");
+        int userSelection = read.nextInt();
+
+        Boolean continueRunning = true;
+
+        if (userSelection == 1){
+
+            for (int i = 0; i < books.length; i++){
+
+
+                //or books[i].isCheckedOut() == false
+                if(!books[i].isCheckedOut()){
+
+                    //display all info
+                    //System.out.println(books[i].toString());
+                   //setters not needed bc 20 books established in array
+
+
+                    System.out.println("ID: " + books[i].getId());
+                    System.out.println("ISBN: " + books[i].getIsbn());
+                    System.out.println("Title: " + books[i].getTitle());
+
+                }
+                System.out.print("Enter ID of book you are interested in: ");
+                int idInsert = read.nextInt();
+
+                if(idInsert == books[i].getId()){
+
+                    System.out.println("The chosen title is available!" +
+                            " Enter your name to proceed with checkout: ");
+                    String userName = read.nextLine();
+
+                }
+
+            }
+
         }
 
-    }
+
+
+
+
 
 
     }
